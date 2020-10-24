@@ -21,3 +21,15 @@ def create_parser():
                         )
 
     return parser
+
+def main():
+    from bra2txt import storage, converter
+
+    args = create_parser().parse_args()
+    content = storage.getContent(args.source)
+    content = converter.convert(content);
+    if not args.dry_run:
+        storage.saveFile(content,"output.txt")
+
+    if args.screen:
+        print(content)
