@@ -11,11 +11,11 @@ def create_parser():
                         default=""
                         )
     parser.add_argument("-s", "--screen",
-                        help="Mostrar en pantalla el texto convertido",
+                        help="Show converted text on the screen",
                         action="store_true"
                         )
     parser.add_argument("--dry-run",
-                        help="Omitir creacion de fichero de destino",
+                        help="Do no save the converted text to a file",
                         action="store_true"
                         )
 
