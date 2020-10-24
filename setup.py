@@ -6,12 +6,12 @@ with open('README.md', encoding='UTF8') as f:
 setup(
     name='bra2txt',
     version='0.1.0',
-    decription='Converter for print-braille text to plain txt',
+    description='Converter for print-braille text to plain txt',
     long_description=readme,
-    autor='Juan D. Cabrerizo',
+    author='Juan D. Cabrerizo',
+    url="https://github.com/jcabrerizo/bra2txt",
     packages=find_packages('src'),
     package_dir={'': 'src'},
-    install_requires=[],
     entry_points={
         'console_scripts': [
             'bra2txt=bra2txt.cli:main'
