@@ -2,7 +2,7 @@ import pytest
 import tempfile
 import sys, os
 sys.path.append(os.path.realpath(os.path.dirname(__file__)+"/.."))
-from bra2txt.storageManager import StorageManager
+from bra2txt.storage_manager import StorageManager
 
 
 def test_read_file():

@@ -1,7 +1,7 @@
 import pytest
 import sys, os
 sys.path.append(os.path.realpath(os.path.dirname(__file__)+"/.."))
-from bra2txt.cliParser import CliParser
+from bra2txt.cli_parser import CliParser
 
 source = 'source.bra'
 

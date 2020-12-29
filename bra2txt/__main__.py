@@ -1,7 +1,7 @@
 from os.path import splitext, basename
+from cli_parser import CliParser
+from storage_manager import StorageManager
 from converter import Converter
-from cliParser import CliParser
-from storageManager import StorageManager
 
 def get_default_output_name(content):
     filename = splitext(basename(content))
