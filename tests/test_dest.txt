@@ -1,3 +1,6 @@
-Helo world
-"Multiline test" (1234567890111) breakline
-The answer is 42
+	Hello world
+	"Multiline test" (1234567890111) breakline
+	The answer is 42
+
+	Text added to check the line uncut. Should be one line after the conversion
+	This is a new line
