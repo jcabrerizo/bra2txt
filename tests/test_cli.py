@@ -1,12 +1,13 @@
 import pytest
-
-from bra2txt import cli
+import sys, os
+sys.path.append(os.path.realpath(os.path.dirname(__file__)+"/.."))
+from bra2txt.cliParser import CliParser
 
 source = 'source.bra'
 
 @pytest.fixture
 def parser():
-    return cli.create_parser()
+    return CliParser().create_parser()
 
 def test_parser_without_source(parser):
     """

@@ -1,6 +1,6 @@
 from os.path import splitext, basename
-from bra2txt import cli
 from converter import Converter
+from cliParser import CliParser
 from storageManager import StorageManager
 
 def get_default_output_name(content):
@@ -10,7 +10,7 @@ def get_default_output_name(content):
 def main():
     from bra2txt import storage, converter
 
-    args = cli.create_parser().parse_args()
+    args = CliParser().create_parser().parse_args()
     storage_manager = StorageManager()
     content = storage_manager.getContent(args.source)
     content = Converter().convert(content)
