@@ -1,21 +1,22 @@
 from os.path import splitext, basename
-from bra2txt import cli
+from cli_parser import CliParser
+from storage_manager import StorageManager
+from converter import Converter
 
 def get_default_output_name(content):
     filename = splitext(basename(content))
     return f"{filename[0]}.txt"
 
 def main():
-    from bra2txt import storage, converter
-
-    args = cli.create_parser().parse_args()
-    content = storage.getContent(args.source)
-    content = converter.convert(content);
+    args = CliParser().create_parser().parse_args()
+    storage_manager = StorageManager()
+    content = storage_manager.getContent(args.source)
+    content = Converter().convert(content)
     if not args.dry_run:
         dest = args.dest
         if dest == "":
             dest = get_default_output_name(args.source)
-        storage.saveFile(content,dest)
+        storage_manager.saveFile(content,dest)
 
     if args.screen:
         print(content)
