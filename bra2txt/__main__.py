@@ -1,6 +1,7 @@
 from os.path import splitext, basename
 from bra2txt import cli
 from converter import Converter
+from storageManager import StorageManager
 
 def get_default_output_name(content):
     filename = splitext(basename(content))
@@ -10,14 +11,14 @@ def main():
     from bra2txt import storage, converter
 
     args = cli.create_parser().parse_args()
-    content = storage.getContent(args.source)
-    converter = Converter()
-    content = converter.convert(content)
+    storage_manager = StorageManager()
+    content = storage_manager.getContent(args.source)
+    content = Converter().convert(content)
     if not args.dry_run:
         dest = args.dest
         if dest == "":
             dest = get_default_output_name(args.source)
-        storage.saveFile(content,dest)
+        storage_manager.saveFile(content,dest)
 
     if args.screen:
         print(content)
