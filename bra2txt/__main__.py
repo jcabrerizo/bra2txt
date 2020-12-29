@@ -8,8 +8,6 @@ def get_default_output_name(content):
     return f"{filename[0]}.txt"
 
 def main():
-    from bra2txt import storage, converter
-
     args = CliParser().create_parser().parse_args()
     storage_manager = StorageManager()
     content = storage_manager.getContent(args.source)
