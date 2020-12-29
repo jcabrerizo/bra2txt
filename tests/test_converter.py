@@ -2,14 +2,14 @@ import pytest
 import re
 import sys, os
 sys.path.append(os.path.realpath(os.path.dirname(__file__)+"/.."))
-from bra2txt.converter_class import Converter
+from bra2txt.converter import Converter
 
 def test_special_characters():
     """
     Replaces 1:1 caracter conversion
     """
     converter = Converter()
-    output = converter.replace_one2one_characters('7($/0)2|<')
+    output = converter._replace_one2one_characters('7($/0)2|<')
     assert output == 'ñáéíóú()"'
 
 def test_replace_numbers():
@@ -17,7 +17,7 @@ def test_replace_numbers():
     The first 10 leter characters after a number symbol are transformed to numers
     """
     converter = Converter()
-    output = converter.replace_numbers(re.match(r'#(\w*)', '#abcdefghijaaa'))
+    output = converter._replace_numbers(re.match(r'#(\w*)', '#abcdefghijaaa'))
     assert output == '1234567890111'
 
 def test_to_upper():
@@ -25,7 +25,7 @@ def test_to_upper():
     Letters after the caopital simbol are tranformed to upper case
     """
     converter = Converter()
-    output = converter.to_upper(re.match(r'{(.)', '{ab'))
+    output = converter._to_upper(re.match(r'{(.)', '{ab'))
     assert output == 'A'
 
 def test_basic_converter():
