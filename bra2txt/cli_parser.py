@@ -19,5 +19,13 @@ class CliParser:
                             help="Do no save the converted text to a file",
                             action="store_true"
                             )
+        parser.add_argument("--input-encoding",
+                            help="Source file encoding",
+                            default="ISO-8859-1"
+                            )
+        parser.add_argument("--output-encoding",
+                            help="Source file encoding",
+                            default="UTF8"
+                            )
 
         return parser
