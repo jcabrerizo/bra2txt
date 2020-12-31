@@ -1,8 +1,11 @@
   {hello world
   <{multiline test< 2#abcdefghijaaa| break-
 line
-  The answer is #db
+  {the answer is #db
 
   {text added to
 check the line uncut. {should be one line after the conversion
   {this is a new line
+
+  {testing removing page number
+                       #abc

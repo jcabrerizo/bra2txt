@@ -4,10 +4,6 @@ class Converter:
     def __init__(self):
         pass
 
-    def _uncut_lines(self, content):
-        """ removes break line character if next paragraph doesn't start with two spaces """
-        return re.sub(r'\n(?!  |\n)',' ', content) 
-
     def _to_upper(self, match):
         """ returns the first captured group letter in upper case"""
         return match.group(1).upper()
@@ -52,12 +48,16 @@ class Converter:
         return self._dictionary_replacer(content, direct_transformation)
 
     def convert(self, content):
+        # Fix line length
+        content = re.sub(r'^ {19,}#[^\n]*','', content, flags=re.MULTILINE) # Removes all lines with a number after more than 20 white spaces, for removing page numbers
+        content = re.sub(r'-\n','', content) # Cut word on the end of a line
+        content = re.sub(r'\n(?! {2,})',' ', content) # Removes break line character if next line doesn't start with two spaces
+        content = re.sub(r' +$','', content, flags=re.MULTILINE) # Removes extra spaces at the end of lines
+        content = re.sub(r'^  ','\n', content, flags=re.MULTILINE) # Replaces the two spaces at the beginning of the paragraphs for a new break line
+        
+        # Replace characters
         content = self._replace_one2one_characters(content)
-        content = re.sub(r'-\n','', content) # cut word on the end of a line
-        content = self._uncut_lines(content)
-        content = re.sub(r'^  ','\t', content, flags=re.MULTILINE) # replaces two spaces at the beginning of the line for one tabulator
-
-        content = re.sub(r'{(.)', self._to_upper, content) # upper case
-        content = re.sub(r'#(\w*)', self._replace_numbers, content) # number
+        content = re.sub(r'{(.)', self._to_upper, content) # Upper case character after { mark
+        content = re.sub(r'#(\w*)', self._replace_numbers, content) # Repace numbers after # mark
         
         return content
