@@ -3,8 +3,8 @@ from cli_parser import CliParser
 from storage_manager import StorageManager
 from converter import Converter
 
-def get_default_output_name(content):
-    filename = splitext(basename(content))
+def get_default_output_name(source):
+    filename = splitext(basename(source))
     return f"{filename[0]}.txt"
 
 def main():
