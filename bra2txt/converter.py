@@ -48,6 +48,10 @@ class Converter:
         return self._dictionary_replacer(content, direct_transformation)
 
     def convert(self, content):
+        # Remove maker lines
+        content = re.sub(r'^ {19,}\?$','', content, flags=re.MULTILINE) # Removes print marker
+        content = re.sub(r' *[:c-]{3,} *$\n?','', content, flags=re.MULTILINE) # Removes lines with sucession of ':', 'c' or '-' printed as lines 
+        
         # Fix line length
         content = re.sub(r'^ {19,}#[^\n]*','', content, flags=re.MULTILINE) # Removes all lines with a number after more than 20 white spaces, for removing page numbers
         content = re.sub(r'-\n','', content) # Cut word on the end of a line
@@ -61,3 +65,4 @@ class Converter:
         content = re.sub(r'#(\w*)', self._replace_numbers, content) # Repace numbers after # mark
         
         return content
+        
