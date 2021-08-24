@@ -1,7 +1,7 @@
 class StorageManager:
-    def getContent(self, source):
+    def getContent(self, source, encoding):
         try:
-            f = open (source, 'r' )
+            f = open (source, 'r', encoding=encoding)
         except FileNotFoundError:
             exit(f"File '{source}' not found")
         else:
@@ -9,6 +9,6 @@ class StorageManager:
                 return f.read()
 
 
-    def saveFile(self, content, dest):
-        with open(dest, "w", encoding = 'UTF8') as f:
+    def saveFile(self, content, dest, encoding):
+        with open(dest, "w", encoding = encoding) as f:
             f.write(content)

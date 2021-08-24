@@ -12,7 +12,7 @@ def test_read_file():
     infile = tempfile.TemporaryFile('r+t')
     infile.write("bra2txt")
     infile.seek(0)
-    content = StorageManager().getContent(infile.name)
+    content = StorageManager().getContent(infile.name,"UTF8")
     assert content == 'bra2txt'
 
 def test_trying_to_read_non_existing_file():
@@ -20,13 +20,13 @@ def test_trying_to_read_non_existing_file():
     Fails tryint to open a non existing file
     """
     with pytest.raises(SystemExit) as pytest_wrapped_error:
-        StorageManager().getContent("non_existing")
+        StorageManager().getContent("non_existing","UTF8")
 
 def test_write_file():
     """
     Writes the content of a file
     """
     outfile = tempfile.NamedTemporaryFile(delete=False)
-    StorageManager().saveFile("bra2txt",outfile.name)
+    StorageManager().saveFile("bra2txt",outfile.name,"UTF8")
     with open(outfile.name, 'r') as f:
         assert f.read() == "bra2txt"
